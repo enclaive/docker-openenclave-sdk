@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ENV TZ=Asia/Dubai
+ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && \
@@ -20,7 +20,8 @@ RUN echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu foc
     apt-get update && \
     apt-get install -y \
         clang-10 \
-        libssl-dev gdb \
+        libssl-dev \
+        gdb \
         libsgx-enclave-common \
         libsgx-quote-ex \
         libprotobuf17 \

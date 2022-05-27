@@ -6,5 +6,8 @@ docker run \
 	--rm \
 	--interactive \
 	--tty \
+	--device /dev/sgx_enclave:/dev/sgx_enclave \
+	--device /dev/sgx_provision:/dev/sgx_provision \
+	-v /dev/sgx:/dev/sgx \
 	-v ${MOUNT_FOLDER}:/workspace \
-	sgx:latest
+	notifierman/openenclave-sdk:latest

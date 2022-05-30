@@ -34,8 +34,8 @@ RUN adduser --gecos "" --disabled-password --uid 1000 sgx
 
 USER sgx
 
-RUN echo "echo Trying to source /opt/openenclave/share/openenclave/openenclaverc ..." >> /home/sgx/.bashrc
-RUN echo ". /opt/openenclave/share/openenclave/openenclaverc" >> /home/sgx/.bashrc
-RUN echo "echo Done." >> /home/sgx/.bashrc
+RUN echo "echo Trying to source /opt/openenclave/share/openenclave/openenclaverc ..." >> /home/sgx/.bashrc && \
+    echo ". /opt/openenclave/share/openenclave/openenclaverc" >> /home/sgx/.bashrc && \
+    echo "echo Done." >> /home/sgx/.bashrc
 
 WORKDIR /workspace/

@@ -10,4 +10,4 @@ docker run \
 	--device /dev/sgx_provision:/dev/sgx_provision \
 	-v /dev/sgx:/dev/sgx \
 	-v ${MOUNT_FOLDER}:/workspace \
-	notifierman/openenclave-sdk:latest
+	notifierman/openenclave-sdk:base-0.1

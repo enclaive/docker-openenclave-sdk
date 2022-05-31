@@ -4,12 +4,14 @@ ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && \
-    apt-get upgrade -y
-
-RUN apt-get install -y \
+    apt-get upgrade -y && \
+    apt-get install -y \
         gnupg2 \
         wget \
-        make
+        make \
+        less \
+        git \
+        gcc
 
 RUN echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu focal main' | tee /etc/apt/sources.list.d/intel-sgx.list && \
     wget -qO - https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | apt-key add - && \
@@ -28,7 +30,8 @@ RUN echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu foc
         libsgx-dcap-ql \
         libsgx-dcap-ql-dev \
         az-dcap-client \
-        open-enclave
+        open-enclave && \
+    apt clean
 
 RUN adduser --gecos "" --disabled-password --uid 1000 sgx
 

@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+ARG SGX_USER_ID
+
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -33,7 +35,7 @@ RUN echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu foc
         open-enclave && \
     apt-get clean
 
-RUN adduser --gecos "" --disabled-password --uid 1000 sgx
+RUN adduser --gecos "" --disabled-password --uid ${SGX_USER_ID} sgx
 
 USER sgx
 

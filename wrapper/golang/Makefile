@@ -6,6 +6,8 @@
 OE_CRYPTO_LIB := mbedtls
 export OE_CRYPTO_LIB
 
+DOCKER_USER_ID = 1000
+
 all: build
 
 build:
@@ -15,23 +17,23 @@ build:
 
 buildInsideDocker:
 	docker run \
-    	--rm \
+		--rm \
 		--interactive \
 		--tty \
-    	--user $(shell id -u):$(shell id -g) \
-    	--device /dev/sgx_enclave:/dev/sgx_enclave \
-    	--device /dev/sgx_provision:/dev/sgx_provision \
-    	-v /dev/sgx/:/dev/sgx/ \
-    	-v $(shell pwd):/workspace/ \
-    	notifierman/openenclave-sdk:golang-0.1 \
-    	bash -ic "make build"
+		--user ${DOCKER_USER_ID}:${DOCKER_USER_ID} \
+		--device /dev/sgx_enclave:/dev/sgx_enclave \
+		--device /dev/sgx_provision:/dev/sgx_provision \
+		-v /dev/sgx/:/dev/sgx/ \
+		-v $(shell pwd):/workspace/ \
+		notifierman/openenclave-sdk:golang-0.1 \
+		bash -ic "make build"
 
 startDockerShell:
 	docker run \
 		--rm \
 		--interactive \
 		--tty \
-		--user $(shell id -u):$(shell id -g) \
+		--user ${DOCKER_USER_ID}:${DOCKER_USER_ID} \
 		--device /dev/sgx_enclave:/dev/sgx_enclave \
 		--device /dev/sgx_provision:/dev/sgx_provision \
 		-v /dev/sgx/:/dev/sgx/ \

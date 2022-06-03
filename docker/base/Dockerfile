@@ -31,7 +31,7 @@ RUN echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu foc
         libsgx-dcap-ql-dev \
         az-dcap-client \
         open-enclave && \
-    apt clean
+    apt-get clean
 
 RUN adduser --gecos "" --disabled-password --uid 1000 sgx
 

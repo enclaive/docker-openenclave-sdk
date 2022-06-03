@@ -43,10 +43,23 @@ startDockerShell:
 		notifierman/openenclave-sdk:golang-0.1 \
 		bash -i
 
+run:
+	cd api/ && ./sample-api
+
+runInsideDocker:
+	docker run \
+		--rm \
+		--interactive \
+		--tty \
+		--user ${USER_ID}:${GROUP_ID} \
+		--device /dev/sgx_enclave:/dev/sgx_enclave \
+		--device /dev/sgx_provision:/dev/sgx_provision \
+		-v /dev/sgx/:/dev/sgx/ \
+		-v ${MOUNT_DIR}:/workspace/ \
+		notifierman/openenclave-sdk:golang-0.1 \
+		bash -ic "make run"
+
 clean:
 	$(MAKE) -C enclave clean
 	$(MAKE) -C host clean
 	rm -rf api/sample-api cmake-build-debug/
-
-run:
-	cd api/ && ./sample-api

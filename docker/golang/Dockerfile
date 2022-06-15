@@ -1,6 +1,6 @@
 FROM notifierman/openenclave-sdk:base_0.1
 
-ARG GO_VERSION=1.18.2
+ARG GO_VERSION
 
 USER root
 WORKDIR /tmp/

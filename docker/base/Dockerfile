@@ -25,6 +25,7 @@ RUN echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu foc
     apt-get install -y \
         clang-10 \
         libssl-dev \
+        libmbedtls-dev \
         gdb \
         libsgx-enclave-common \
         libsgx-quote-ex \
